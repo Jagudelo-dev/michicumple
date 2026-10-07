@@ -1,0 +1,25 @@
+<section
+  class="envelope-scene"
+  role="button"
+  tabindex="0"
+  [attr.aria-expanded]="isOpen()"
+  aria-label="Sobre de cumpleaños. Activa para abrir o cerrar la carta."
+  (click)="toggle()"
+  (keydown)="onKeydown($event)"
+>
+  <div class="envelope" [class.is-open]="isOpen()">
+    <article #letter class="letter" aria-label="Carta de cumpleaños">
+      <p class="letter-date">Con todo mi cariño</p>
+      <h2>Para {{ personalization.name() }}</h2>
+      <p>Hoy quiero recordarte lo especial que eres y lo mucho que iluminas la vida de quienes tenemos la suerte de conocerte.</p>
+      <p>Que este nuevo año te traiga momentos que te hagan reír, sueños que se cumplan y todo el amor bonito que mereces.</p>
+      <p class="letter-signoff">Feliz cumpleaños, con cariño.</p>
+    </article>
+
+    <div class="envelope-body"></div>
+    <div class="envelope-pocket"></div>
+    <div #flap class="envelope-flap"></div>
+    <div class="seal" aria-hidden="true"><span class="heart">♥</span><span class="initial">A</span></div>
+    <span class="open-label">Ábreme</span>
+  </div>
+</section>

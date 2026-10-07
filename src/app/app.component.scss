@@ -1,0 +1,11 @@
+:host {
+	display: block;
+	min-height: 100%;
+}
+
+#confetti {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+}

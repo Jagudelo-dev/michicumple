@@ -1,0 +1,7 @@
+@if (!started()) {
+  <app-loader (started)="onStarted()"></app-loader>
+} @else {
+  <app-main></app-main>
+}
+
+<canvas id="confetti" aria-hidden="true"></canvas>

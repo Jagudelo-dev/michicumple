@@ -1,0 +1,46 @@
+:root {
+	--color-bg-dark: #0a0a0a;
+	--color-gold: #d4af37;
+	--color-gold-light: #f5e6a3;
+	--color-pink: #FFDAB9;
+	--color-pink-soft: #fce4d6;
+	--color-text-dark: #2c2c2c;
+	--color-text-light: #fff8f0;
+	--font-handwritten: 'Dancing Script', cursive;
+	--font-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: var(--font-body);
+	background-color: var(--color-pink);
+}
+
+canvas.confetti-canvas {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}

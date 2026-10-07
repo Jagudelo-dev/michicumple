@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.typed-message {
+  min-height: 3.2em;
+  color: #68453f;
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.35rem, 5vw, 2rem);
+  line-height: 1.4;
+  text-align: center;
+}

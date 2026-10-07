@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist/michicumple/browser"
+
+[build.environment]
+  NODE_VERSION = "18.19.1"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
