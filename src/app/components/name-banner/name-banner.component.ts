@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { PersonalizationService } from '../../services/personalization.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { birthdayTexts } from '../../data/texts';
 
 @Component({
   selector: 'app-name-banner',
@@ -9,5 +9,6 @@ import { PersonalizationService } from '../../services/personalization.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NameBannerComponent {
-  readonly personalization = inject(PersonalizationService);
+  readonly texts = birthdayTexts;
+  readonly titleLetters = birthdayTexts.titleLine2.split('');
 }

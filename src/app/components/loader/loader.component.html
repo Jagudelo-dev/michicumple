@@ -1,5 +1,9 @@
 <main class="loader" aria-label="Inicio de la carta de cumpleaños">
-  <button class="start-button" type="button" (click)="started.emit()">
-    START
-  </button>
+  <div #crtContent class="crt-content">
+    <button class="start-button" type="button" [disabled]="transitioning" (click)="start()">
+      START
+    </button>
+  </div>
+  <div #flash class="crt-flash" aria-hidden="true"></div>
+  <div #blackout class="crt-blackout" aria-hidden="true"></div>
 </main>

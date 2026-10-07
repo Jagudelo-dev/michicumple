@@ -1,7 +1,7 @@
 :host {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   display: block;
   overflow: hidden;
   pointer-events: none;
@@ -10,19 +10,18 @@
 .balloon-border {
   position: absolute;
   inset: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.65rem 0.35rem;
 }
 
 .balloon {
-  position: relative;
-  align-self: flex-start;
+  position: absolute;
+  top: 100%;
+  left: var(--balloon-x);
   width: clamp(1.1rem, 5vw, 2.5rem);
   aspect-ratio: 0.78;
   border-radius: 50% 50% 48% 48%;
   opacity: 0.68;
   box-shadow: inset -0.35rem -0.2rem 0 rgb(70 40 30 / 8%);
+  animation: balloon-rise var(--balloon-duration) linear var(--balloon-delay) infinite;
 }
 
 .balloon::before {
@@ -49,32 +48,26 @@
   content: '';
 }
 
-.balloon--rose {
-  margin-top: 2.8rem;
-  color: #c76f78;
+.balloon {
   background: currentColor;
 }
 
-.balloon--gold {
-  margin-top: 0.5rem;
-  color: #d5a43a;
-  background: currentColor;
+@keyframes balloon-rise {
+  to {
+    top: -20%;
+  }
 }
 
-.balloon--coral {
-  margin-top: 1.5rem;
-  color: #db8166;
-  background: currentColor;
+@media (max-width: 699px) {
+  .balloon:nth-child(n + 7) {
+    display: none;
+  }
 }
 
-.balloon--peach {
-  margin-top: 3.5rem;
-  color: #e6a996;
-  background: currentColor;
-}
-
-@media (min-width: 700px) {
-  .balloon-border {
-    padding-inline: 1.25rem;
+@media (prefers-reduced-motion: reduce) {
+  .balloon {
+    animation: none;
+    top: auto;
+    bottom: 0.5rem;
   }
 }

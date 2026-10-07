@@ -1,6 +1,5 @@
 :host {
   position: relative;
-  z-index: 1;
   display: block;
   min-height: 100vh;
   background: #FFDAB9;
@@ -9,7 +8,7 @@
 .birthday-page {
   display: grid;
   min-height: 100vh;
-  place-items: center;
+  place-items: start center;
   padding: 4.25rem 1rem 2.5rem;
 }
 

@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, ViewChild, inject } from '@angular/core';
 import Typed from 'typed.js';
+import { birthdayTexts } from '../../data/texts';
 
 @Component({
   selector: 'app-typed-text',
@@ -13,20 +14,23 @@ export class TypedTextComponent implements AfterViewInit {
   private readonly typedTarget!: ElementRef<HTMLSpanElement>;
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly messages = birthdayTexts.typedMessages;
   private typed?: Typed;
 
   ngAfterViewInit(): void {
-    const message = 'Que la vida te devuelva toda la alegría que regalas.';
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reducedMotion) {
-      this.typedTarget.nativeElement.textContent = message;
+      this.typedTarget.nativeElement.textContent = this.messages.join(' · ');
       return;
     }
 
     this.typed = new Typed(this.typedTarget.nativeElement, {
-      strings: [message],
-      typeSpeed: 36,
+      strings: [...this.messages],
+      typeSpeed: 40,
+      backSpeed: 20,
+      backDelay: 2000,
+      loop: true,
       showCursor: true,
       cursorChar: '|',
       contentType: 'null'

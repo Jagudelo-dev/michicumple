@@ -1,6 +1,12 @@
 <div class="balloon-border" aria-hidden="true">
-  <span class="balloon balloon--rose"></span>
-  <span class="balloon balloon--gold"></span>
-  <span class="balloon balloon--coral"></span>
-  <span class="balloon balloon--peach"></span>
+  @for (balloon of balloons; track balloon.id) {
+    <span
+      class="balloon"
+      [style.color]="balloon.color"
+      [style.--balloon-x]="balloon.x + '%'"
+      [style.--balloon-duration]="balloon.duration + 's'"
+      [style.--balloon-delay]="balloon.delay + 's'"
+      (animationiteration)="respawn($event)"
+    ></span>
+  }
 </div>

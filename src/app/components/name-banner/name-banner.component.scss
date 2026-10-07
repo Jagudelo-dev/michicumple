@@ -7,20 +7,45 @@
   text-align: center;
 }
 
-.eyebrow {
-  color: #8c4b42;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 h1 {
-  margin-top: 0.15em;
   color: #9a3e38;
   font-family: var(--font-handwritten);
-  font-size: clamp(2.7rem, 10vw, 5.2rem);
+  font-size: clamp(3rem, 12vw, 6.5rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 0.95;
   overflow-wrap: anywhere;
+}
+
+.title-line,
+.wave-line {
+  display: block;
+}
+
+.wave-line {
+  padding-bottom: 0.12em;
+  color: #a3333b;
+  white-space: nowrap;
+}
+
+.wave-letter {
+  display: inline-block;
+  animation: letter-wave 1.15s ease-in-out infinite;
+  animation-delay: calc(var(--wave-index) * 75ms);
+}
+
+@keyframes letter-wave {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  45% {
+    transform: translateY(-0.34em) scale(1.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-letter {
+    animation: none;
+  }
 }

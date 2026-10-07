@@ -1,4 +1,10 @@
 <header class="name-banner">
-  <p class="eyebrow">Hoy celebramos a</p>
-  <h1>{{ personalization.name() }}</h1>
+  <h1 [attr.aria-label]="texts.titleLine1 + ' ' + texts.titleLine2">
+    <span class="title-line">{{ texts.titleLine1 }}</span>
+    <span class="wave-line" aria-hidden="true">
+      @for (letter of titleLetters; track $index) {
+        <span class="wave-letter" [style.--wave-index]="$index">{{ letter === ' ' ? '\u00a0' : letter }}</span>
+      }
+    </span>
+  </h1>
 </header>

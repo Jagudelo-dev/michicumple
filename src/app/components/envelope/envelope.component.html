@@ -1,19 +1,31 @@
-<section
-  class="envelope-scene"
-  role="button"
-  tabindex="0"
-  [attr.aria-expanded]="isOpen()"
-  aria-label="Sobre de cumpleaños. Activa para abrir o cerrar la carta."
-  (click)="toggle()"
-  (keydown)="onKeydown($event)"
->
-  <div class="envelope" [class.is-open]="isOpen()">
-    <article #letter class="letter" aria-label="Carta de cumpleaños">
-      <p class="letter-date">Con todo mi cariño</p>
-      <h2>Para {{ personalization.name() }}</h2>
-      <p>Hoy quiero recordarte lo especial que eres y lo mucho que iluminas la vida de quienes tenemos la suerte de conocerte.</p>
-      <p>Que este nuevo año te traiga momentos que te hagan reír, sueños que se cumplan y todo el amor bonito que mereces.</p>
-      <p class="letter-signoff">Feliz cumpleaños, con cariño.</p>
+<div
+  #backdrop
+  class="modal-backdrop"
+  [class.active]="isOpen()"
+  (click)="onBackdropClick($event)"
+  aria-hidden="true"
+></div>
+
+@if (isOpen()) {
+  <button class="close-button" type="button" aria-label="Cerrar carta" (click)="close()">×</button>
+}
+
+<section #scene class="envelope-scene" [class.is-open]="isOpen()" [attr.data-state]="state()" [attr.aria-modal]="isOpen()" [attr.role]="isOpen() ? 'dialog' : null" [attr.aria-expanded]="isOpen()">
+  <div
+    class="envelope"
+    role="button"
+    tabindex="0"
+    aria-label="Sobre de cumpleaños. Activa para abrir."
+    (click)="open()"
+    (keydown)="onEnvelopeKeydown($event)"
+  >
+    <article #letter class="letter" [class.is-visible]="state() !== 'closed'" aria-label="Carta de cumpleaños">
+      <p class="letter-date">{{ texts.letterIntro }}</p>
+      <h2>{{ texts.letterHeading }}</h2>
+      @for (paragraph of texts.letterParagraphs; track $index) {
+        <p>{{ paragraph }}</p>
+      }
+      <p class="letter-signoff">{{ texts.letterSignoff }}</p>
     </article>
 
     <div class="envelope-body"></div>

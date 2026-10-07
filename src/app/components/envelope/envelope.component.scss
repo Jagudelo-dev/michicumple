@@ -4,6 +4,54 @@
   max-width: 100%;
 }
 
+:host(.modal-open) {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  width: auto;
+  max-width: none;
+  place-items: center;
+  padding: 5vh 5vw;
+}
+
+.modal-backdrop {
+  display: none;
+}
+
+.modal-backdrop.active {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  background: rgb(0 0 0 / 90%);
+  backdrop-filter: blur(6px);
+}
+
+.close-button {
+  position: fixed;
+  z-index: 3;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  display: grid;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgb(255 248 240 / 55%);
+  border-radius: 50%;
+  background: rgb(10 10 10 / 75%);
+  color: #fff8f0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.close-button:focus-visible {
+  outline: 3px solid #f5e6a3;
+  outline-offset: 3px;
+}
+
 .envelope-scene {
   position: relative;
   width: 100%;
@@ -11,6 +59,13 @@
   cursor: pointer;
   perspective: 900px;
   outline: none;
+}
+
+.envelope-scene.is-open {
+  z-index: 1;
+  width: min(90vw, 900px);
+  height: min(80vh, 760px);
+  min-height: 0;
 }
 
 .envelope-scene:focus-visible {
@@ -23,6 +78,10 @@
   position: absolute;
   inset: 0;
   isolation: isolate;
+}
+
+.envelope[role='button'] {
+  cursor: pointer;
 }
 
 .envelope-body {
@@ -44,6 +103,8 @@
   right: 5%;
   bottom: 10%;
   left: 5%;
+  visibility: hidden;
+  opacity: 0;
   height: clamp(12rem, 40vh, 23rem);
   max-height: 70vh;
   overflow-y: auto;
@@ -56,6 +117,10 @@
   box-shadow: 0 0.4rem 1.2rem rgb(61 41 24 / 20%);
   scrollbar-color: #c5a873 transparent;
   scrollbar-width: thin;
+}
+
+.letter.is-visible {
+  visibility: visible;
 }
 
 .letter-date,
@@ -154,4 +219,22 @@
 
 .is-open .open-label {
   opacity: 0.55;
+}
+
+.is-open .letter.is-visible {
+  z-index: 6;
+}
+
+.is-open .envelope-flap {
+  z-index: 0;
+}
+
+.is-open .seal {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .close-button {
+    transition: none;
+  }
 }
